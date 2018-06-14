@@ -1,0 +1,51 @@
+<div class="container" id="vue-app">
+    <div v-if="bInterial">
+        <a class="exit-interrial-button" @click="backToOut"></a>
+    </div>
+    <div v-else>
+        <div class="bottom-area">
+            <div class="bottom-bar">
+                <a class="button button-hori" v-bind:class="bColorListActive?'button-changematerial-active':'button-changematerial'" @click="bColorListActive = !bColorListActive"></a>
+                <a v-if="bLightActive" class="button button-hori button-openlight-active" @click="deactiveLight"></a>
+                <a v-else class="button button-hori button-openlight" @click="activeLight"></a>
+                <a v-if="bEngineStart" class="button button-hori button-drive-active" @click="stopEngine"></a>
+                <a v-else class="button button-hori button-drive" @click="startEngine"></a>
+                <a class="button button-hori button-interial" @click="enterIntertials"></a>
+            </div>
+        </div>
+
+        <div v-if="bColorListActive" class = "color-list">
+            <div class="bottom-bar vertical-layout">
+                <a class="button" v-bind:class="currentColor === 'white'?'button-white-active':'button-white'"  @click="changeColor(0)">
+                </a>
+                <a class="button" v-bind:class="currentColor === 'black'?'button-black-active':'button-black'"  @click="changeColor(1)">
+                </a>
+                <a class="button" v-bind:class="currentColor === 'red'?'button-red-active':'button-red'"  @click="changeColor(2)">
+                </a>
+                <a class="button" v-bind:class="currentColor === 'grey'?'button-grey-active':'button-grey'"  @click="changeColor(3)">
+                </a>
+                <a class="button" v-bind:class="currentColor === 'blue'?'button-blue-active':'button-blue'" @click="changeColor(4)">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div v-if="bCarListActive" class = "car-list w3-display-right vertical-layout animated slideInRight">
+        <a class="side-list-button" v-bind:class="currentModel === 'b50'?'button-B50-active':'button-B50'" @click="changeToB50">
+        </a>
+        <a class="side-list-button" v-bind:class="currentModel === 'b50rs'?'button-B50RS-active':'button-B50RS'" @click="changeToB50RS">
+        </a>
+        <a class="side-list-button" v-bind:class="currentModel === 'x40'?'button-X40-active':'button-X40'" @click="changeToX40">
+        </a>          
+        <a class="side-list-button" v-bind:class="currentModel === 'x80'?'button-X80-active':'button-X80'" @click="changeToX80">
+        </a>
+    </div>
+    <a class="w3-display-right animated" v-bind:class="bCarListActive?'sideButtonSlideIn side-button-close':'side-button'" @click="bCarListActive = !bCarListActive">
+    </a>  
+    
+    <div v-if="bSceneLoading" class="scene-loader">
+        <div class="dot-falling"></div>
+    </div>
+</div>
+
+
